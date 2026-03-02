@@ -3286,12 +3286,20 @@ const FacultyDashboard = () => {
                                                 }}>
                                                     <CheckCircle size={16} color="#10b981" />
                                                     <a
+                                                        href={`${API_BASE_URL}/cie/download/${sched.questionPaperPath}?view=true`}
+                                                        target="_blank"
+                                                        rel="noopener noreferrer"
+                                                        style={{ color: '#2563eb', fontWeight: 600, textDecoration: 'none', fontSize: '0.9rem', display: 'flex', alignItems: 'center', gap: '4px', borderRight: '1px solid #d1d5db', paddingRight: '8px' }}
+                                                    >
+                                                        <FileText size={14} /> View
+                                                    </a>
+                                                    <a
                                                         href={`${API_BASE_URL}/cie/download/${sched.questionPaperPath}`}
                                                         target="_blank"
                                                         rel="noopener noreferrer"
                                                         style={{ color: '#065f46', fontWeight: 600, textDecoration: 'none', fontSize: '0.9rem', display: 'flex', alignItems: 'center', gap: '4px' }}
                                                     >
-                                                        <Download size={14} /> Download Uploaded Question Paper
+                                                        <Download size={14} /> Download
                                                     </a>
                                                 </div>
                                             )}

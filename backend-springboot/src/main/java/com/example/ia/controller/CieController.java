@@ -248,8 +248,9 @@ public class CieController {
     // ========== DOWNLOAD QUESTION PAPER ==========
 
     @GetMapping("/download/{filename:.+}")
-    @PreAuthorize("hasRole('HOD') or hasRole('FACULTY') or hasRole('PRINCIPAL')")
-    public ResponseEntity<Resource> downloadQuestionPaper(@PathVariable String filename) {
+    public ResponseEntity<Resource> downloadQuestionPaper(
+            @PathVariable String filename,
+            @RequestParam(required = false, defaultValue = "false") boolean view) {
         try {
             Path filePath = Paths.get(uploadDir).resolve(filename).normalize();
             Resource resource = new UrlResource(filePath.toUri());
@@ -263,11 +264,17 @@ public class CieController {
                 contentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
             } else if (filename.endsWith(".pdf")) {
                 contentType = "application/pdf";
+            } else if (filename.endsWith(".docx")) {
+                contentType = "application/vnd.openxmlformats-officedocument.wordprocessingml.document";
+            } else if (filename.endsWith(".doc")) {
+                contentType = "application/msword";
             }
+
+            String disposition = view ? "inline" : "attachment";
 
             return ResponseEntity.ok()
                     .contentType(MediaType.parseMediaType(contentType))
-                    .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + filename + "\"")
+                    .header(HttpHeaders.CONTENT_DISPOSITION, disposition + "; filename=\"" + filename + "\"")
                     .body(resource);
 
         } catch (Exception e) {

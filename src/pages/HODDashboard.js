@@ -5,7 +5,7 @@ import DashboardLayout from '../components/DashboardLayout';
 import {
     LayoutDashboard, Users, FileText, CheckCircle, TrendingUp, BarChart2,
     AlertTriangle, Briefcase, Bell, Activity, Clock, Award,
-    Edit, Save, LogOut, ShieldAlert, X, BookOpen, Layers, Megaphone, Calendar, MapPin, PenTool, Download, Mail, Trash2, Key, UserPlus, Upload, GitPullRequest
+    Edit, Save, LogOut, ShieldAlert, X, BookOpen, Layers, Megaphone, Calendar, MapPin, PenTool, Download, Mail, Trash2, Key, UserPlus, Upload, GitPullRequest, Eye
 } from 'lucide-react';
 import {
     departments, subjectsByDept, getStudentsByDept, englishMarks, mathsMarks,
@@ -2162,9 +2162,14 @@ const HODDashboard = ({ isSpectator = false, spectatorDept = null }) => {
                                         </div>
                                         <div style={{ display: 'flex', gap: '8px' }}>
                                             {ann.questionPaperPath && (
-                                                <button className={styles.iconBtn} onClick={() => window.open(`${API_BASE_URL}/cie/download/${ann.questionPaperPath}`, '_blank')} title="Download Question Paper" style={{ color: '#16a34a', background: '#dcfce7' }}>
-                                                    <Download size={16} />
-                                                </button>
+                                                <>
+                                                    <button className={styles.iconBtn} onClick={() => window.open(`${API_BASE_URL}/cie/download/${ann.questionPaperPath}?view=true`, '_blank')} title="View Question Paper" style={{ color: '#2563eb', background: '#dbeafe' }}>
+                                                        <Eye size={16} />
+                                                    </button>
+                                                    <button className={styles.iconBtn} onClick={() => window.open(`${API_BASE_URL}/cie/download/${ann.questionPaperPath}`, '_blank')} title="Download Question Paper" style={{ color: '#16a34a', background: '#dcfce7' }}>
+                                                        <Download size={16} />
+                                                    </button>
+                                                </>
                                             )}
                                             <button className={styles.iconBtn} onClick={() => handleEditSchedule(ann)} title="Edit" style={{ color: '#2563eb', background: '#dbeafe' }}>
                                                 <Edit size={16} />
@@ -2230,21 +2235,41 @@ const HODDashboard = ({ isSpectator = false, spectatorDept = null }) => {
                                                         </span>
                                                     </td>
                                                     <td style={{ textAlign: 'right' }}>
-                                                        <button
-                                                            className={styles.primaryBtn}
-                                                            style={{
-                                                                padding: '0.5rem 1rem',
-                                                                fontSize: '0.85rem',
-                                                                background: '#16a34a',
-                                                                borderColor: '#16a34a',
-                                                                display: 'inline-flex',
-                                                                alignItems: 'center',
-                                                                gap: '6px'
-                                                            }}
-                                                            onClick={() => window.open(`${API_BASE_URL}/cie/download/${ann.questionPaperPath}`, '_blank')}
-                                                        >
-                                                            <Download size={16} /> View / Download
-                                                        </button>
+                                                        <div style={{ display: 'flex', gap: '8px', justifyContent: 'flex-end' }}>
+                                                            <button
+                                                                className={styles.secondaryBtn}
+                                                                style={{
+                                                                    padding: '0.5rem 1rem',
+                                                                    fontSize: '0.85rem',
+                                                                    background: '#f8fafc',
+                                                                    color: '#2563eb',
+                                                                    border: '1px solid #cbd5e1',
+                                                                    display: 'inline-flex',
+                                                                    alignItems: 'center',
+                                                                    gap: '6px'
+                                                                }}
+                                                                onClick={() => window.open(`${API_BASE_URL}/cie/download/${ann.questionPaperPath}?view=true`, '_blank')}
+                                                                title="View in Browser"
+                                                            >
+                                                                <Eye size={16} /> View
+                                                            </button>
+                                                            <button
+                                                                className={styles.primaryBtn}
+                                                                style={{
+                                                                    padding: '0.5rem 1rem',
+                                                                    fontSize: '0.85rem',
+                                                                    background: '#16a34a',
+                                                                    borderColor: '#16a34a',
+                                                                    display: 'inline-flex',
+                                                                    alignItems: 'center',
+                                                                    gap: '6px'
+                                                                }}
+                                                                onClick={() => window.open(`${API_BASE_URL}/cie/download/${ann.questionPaperPath}`, '_blank')}
+                                                                title="Download File"
+                                                            >
+                                                                <Download size={16} /> Download
+                                                            </button>
+                                                        </div>
                                                     </td>
                                                 </tr>
                                             ))
