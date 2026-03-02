@@ -2302,7 +2302,7 @@ const HODDashboard = ({ isSpectator = false, spectatorDept = null }) => {
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%' }}>
                     <div>
                         <h1 className={styles.welcomeTextBig}>Hello, {user?.fullName || user?.username}</h1>
-                        <p className={styles.subtitle}>Head of {departments.find(d => d.id === selectedDept)?.name} | HOD</p>
+                        <p className={styles.subtitle}>HOD | {user?.username || 'HOD'}</p>
                     </div>
                 </div>
             </header>

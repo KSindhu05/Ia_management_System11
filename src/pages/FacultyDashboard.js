@@ -3039,7 +3039,7 @@ const FacultyDashboard = () => {
                                         >
                                             <option value="">Select Subject</option>
                                             {mySubjects.map(sub => (
-                                                <option key={sub.id} value={sub.id}>{sub.name} ({sub.code})</option>
+                                                <option key={sub.id} value={sub.id}>{sub.name} ({sub.code}) - {sub.department}</option>
                                             ))}
                                         </select>
                                     </div>
@@ -3737,7 +3737,7 @@ const FacultyDashboard = () => {
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%' }}>
                     <div>
                         <h1 className={styles.welcomeText}>Hello, {user?.fullName || user?.username || 'Faculty'}</h1>
-                        <p className={styles.subtitle}>Lecturer | {user?.department || 'Department'}</p>
+                        <p className={styles.subtitle}>FACULTY | {user?.username || 'Faculty'}</p>
                     </div>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
                     </div>

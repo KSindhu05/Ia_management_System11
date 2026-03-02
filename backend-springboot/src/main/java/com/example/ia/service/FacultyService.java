@@ -236,8 +236,8 @@ public class FacultyService {
         }
 
         int evaluated = uniqueStudents.size();
-        int pending = 0;
+        int pending = allowedStudents.size() - evaluated;
         double avg = scoredCount > 0 ? Math.round((totalScore / scoredCount / 50.0 * 100) * 10.0) / 10.0 : 0;
-        return new FacultyClassAnalytics(evaluated, pending, avg, low, top, uniqueStudents.size(), lowList);
+        return new FacultyClassAnalytics(evaluated, pending, avg, low, top, allowedStudents.size(), lowList);
     }
 }
